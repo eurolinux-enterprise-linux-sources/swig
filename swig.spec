@@ -4,12 +4,13 @@
 Summary: Connects C/C++/Objective C to some high-level programming languages
 Name: swig
 Version: 1.3.40
-Release: 5%{?dist}
+Release: 6%{?dist}
 License: GPLv2+ and LGPLv2+ and BSD
 Group: Development/Tools
 URL: http://swig.sourceforge.net/
 Source: http://downloads.sourceforge.net/project/swig/swig/swig-%{version}/swig-%{version}.tar.gz
 Patch1: swig-1.3.23-pylib.patch
+Patch2: swig13-rh679713.patch
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: perl, python-devel
@@ -42,7 +43,7 @@ This package contains documentation for SWIG and useful examples
 %prep
 %setup -q -n swig-%{version}
 %patch1 -p1 -b .pylib
-
+%patch2 -p0 -b .rh679713
 
 # as written on https://fedoraproject.org/wiki/Packaging_talk:Perl, section 2
 # (specific req/prov filtering). Before you remove this hack make sure you don't
@@ -113,6 +114,9 @@ rm -rf %{buildroot}
 %doc Doc Examples
 
 %changelog
+* Mon Jun 27 2011 Adam Tkac <atkac redhat com> 1.3.40-6
+- use zend_error instead of zend_error_noreturn in PHP code (#679713)
+
 * Mon Feb 22 2010 Adam Tkac <atkac redhat com> 1.3.40-5
 - s/LGPL/LGPLv2+
 

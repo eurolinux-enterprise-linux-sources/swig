@@ -13,7 +13,7 @@
 Summary: Connects C/C++/Objective C to some high-level programming languages
 Name:    swig
 Version: 2.0.10
-Release: 2%{?dist}
+Release: 4%{?dist}
 License: GPLv3+ and BSD
 Group:   Development/Tools
 URL:     http://swig.sourceforge.net/
@@ -133,6 +133,12 @@ gzip %{buildroot}%{_mandir}/man1/$(basename %{SOURCE1})
 %doc Doc Examples LICENSE LICENSE-GPL LICENSE-UNIVERSITIES COPYRIGHT
 
 %changelog
+* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 2.0.10-4
+- Mass rebuild 2014-01-24
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 2.0.10-3
+- Mass rebuild 2013-12-27
+
 * Tue Oct 08 2013 Jitka Plesnikova <jplesnik@redhat.com> - 2.0.10-2
 - Use bconds for enabling testsuite
 - Resolves: rhbz#1016153

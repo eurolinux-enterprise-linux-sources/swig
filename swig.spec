@@ -13,15 +13,15 @@
 Summary: Connects C/C++/Objective C to some high-level programming languages
 Name:    swig
 Version: 2.0.10
-Release: 4%{?dist}
+Release: 5%{?dist}
 License: GPLv3+ and BSD
 Group:   Development/Tools
 URL:     http://swig.sourceforge.net/
 Source0: http://downloads.sourceforge.net/project/swig/swig/swig-%{version}/swig-%{version}.tar.gz
 Source1: swig.1
-Patch1:  swig207-setools.patch
 # Fix the failure on arch x390 during testing
-Patch2:  swig-2.0.10-Fix-x390-build.patch
+Patch1:  swig-2.0.10-Fix-x390-build.patch
+Patch2:  swig-2.0.10-Support-octave-3.8.0.patch
 
 BuildRequires: perl, python-devel, pcre-devel
 %if %{tcl}
@@ -60,8 +60,8 @@ This package contains documentation for SWIG and useful examples
 %prep
 %setup -q -n swig-%{version}
 
-%patch1 -p1 -b .setools
-%patch2 -p1 -b .x390
+%patch1 -p1 -b .x390
+%patch2 -p1 -b .octave
 
 # as written on https://fedoraproject.org/wiki/Packaging_talk:Perl, section 2
 # (specific req/prov filtering). Before you remove this hack make sure you don't
@@ -133,6 +133,10 @@ gzip %{buildroot}%{_mandir}/man1/$(basename %{SOURCE1})
 %doc Doc Examples LICENSE LICENSE-GPL LICENSE-UNIVERSITIES COPYRIGHT
 
 %changelog
+* Wed Mar 16 2016 Jitka Plesnikova <jplesnik@redhat.com> - 2.0.10-5
+- Remove setools patch (bug #1263740)
+- Add support for Octave 3.8 (bug #1136487)
+
 * Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 2.0.10-4
 - Mass rebuild 2014-01-24
 
